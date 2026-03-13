@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qa-noarch-test"
+version = "0.1.0"
+
+[project.scripts]
+qa-noarch-test = "qa_noarch_test:main"

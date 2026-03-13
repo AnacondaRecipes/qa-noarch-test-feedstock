@@ -5,25 +5,28 @@ package:
   name: {{ name }}
   version: {{ version }}
 
+source:
+  path: ../src
+
 build:
   number: 0
   noarch: python
-  script: |
-    mkdir -p $PREFIX/bin
-    echo '#!/usr/bin/env python' > $PREFIX/bin/qa-noarch-test
-    echo 'print("hello world")' >> $PREFIX/bin/qa-noarch-test
-    chmod +x $PREFIX/bin/qa-noarch-test
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - python
+    - pip
+    - setuptools
   run:
     - python
 
 test:
+  imports:
+    - qa_noarch_test
   commands:
-    - qa-noarch-test
+    - python -c "from qa_noarch_test import main; main()"
 
 about:
-  summary: "QA dummy noarch package that prints hello world"
+  summary: "Dummy noarch test package"
   license: MIT
