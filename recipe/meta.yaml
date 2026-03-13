@@ -1,0 +1,29 @@
+{% set name = "qa-noarch-test" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+build:
+  number: 0
+  noarch: python
+  script: |
+    mkdir -p $PREFIX/bin
+    echo '#!/usr/bin/env python' > $PREFIX/bin/qa-noarch-test
+    echo 'print("hello world")' >> $PREFIX/bin/qa-noarch-test
+    chmod +x $PREFIX/bin/qa-noarch-test
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+
+test:
+  commands:
+    - qa-noarch-test
+
+about:
+  summary: "QA dummy noarch package that prints hello world"
+  license: MIT
