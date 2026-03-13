@@ -9,7 +9,7 @@ source:
   path: ../src
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -28,5 +28,5 @@ test:
     - python -c "from qa_noarch_test import main; main()"
 
 about:
-  summary: "Dummy noarch test package"
+  summary: "QA dummy noarch package that prints hello world"
   license: MIT
