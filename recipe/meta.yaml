@@ -9,9 +9,12 @@ source:
   path: ../src
 
 build:
-  number: 1
+  number: 2
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+
+  entry_points:
+    - qa-noarch-test = qa_noarch_test:main
 
 requirements:
   host:
@@ -25,7 +28,7 @@ test:
   imports:
     - qa_noarch_test
   commands:
-    - python -c "from qa_noarch_test import main; main()"
+    - qa-noarch-test
 
 about:
   summary: "QA dummy noarch package that prints hello world"
